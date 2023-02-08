@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
+import { searchSchema } from '../Validations/searchValidation';
 
 export const Main = () => {
   const [Uf, setUf] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [street, setStreet] = useState<string>('');
-  const [results, setResults] = useState<Array<object>>([])
+  const [results, setResults] = useState<Array<object>>([]);
+  const [error, setError] = useState<string>('')
 
-  const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`
+  const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
 
+  setTimeout(() => {
+    setError('')
+  }, 3000)
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
-    const data = await fetch(endpoint).then(response => response.json());
+    const isValid = await searchSchema.isValid({street});
 
-    setResults(data)
-    console.log(results)
-  }
+    if(isValid) {
+      const data = await fetch(endpoint).then(response => response.json());
+      setResults(data);
+      console.log(results);
+    } else {
+      setError('A busca deve conter ao menos 3 letras');
+    };
+  };
+
+  console.log(street)
   return (
     <div className='flex flex-col mt-20 p-4 items-center justify-center border rounded-2xl shadow-xl'>
       <div>
@@ -52,6 +64,13 @@ export const Main = () => {
           ACHE MEU CEP!
         </button>
       </form>
+      {error && (
+        <div>
+          <p className='text-xs mt-2 text-red-600'>
+            {error}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
