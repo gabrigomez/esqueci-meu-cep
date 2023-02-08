@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 
 export const Main = () => {
-  const [Uf, setUf] = useState<string>('')
-  const [city, setCity] = useState<string>('')
-  const [street, setStreet] = useState<string>('')
+  const [Uf, setUf] = useState<string>('');
+  const [city, setCity] = useState<string>('');
+  const [street, setStreet] = useState<string>('');
+  const [results, setResults] = useState<Array<object>>([])
+
+  const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`
 
 
-  const handleSubmit = (e: { preventDefault: () => void; }) => {
-    e.preventDefault()
-    console.log(Uf, city, street)
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    const data = await fetch(endpoint).then(response => response.json());
+
+    setResults(data)
+    console.log(results)
   }
   return (
     <div className='flex flex-col mt-20 p-4 items-center justify-center border rounded-2xl shadow-xl'>
@@ -47,5 +53,5 @@ export const Main = () => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
