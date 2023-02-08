@@ -18,19 +18,22 @@ export const Main = () => {
         </p>
       </div>
       <form className='flex flex-col items-center' onSubmit={handleSubmit}>
-        <input        
+        <input
+          className='focus:outline-none mb-2 focus:border-b focus:border-blue-200'        
           type="text"
           placeholder='UF'
           value={Uf}
           onChange={(e) => setUf(e.target.value)}
         />
-        <input 
+        <input
+          className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
           type="text"
           placeholder='Cidade'
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <input 
+        <input
+          className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
           type="text"
           placeholder='Logradouro (rua, avenida, etc)'
           value={street}
