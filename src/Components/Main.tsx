@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 
+interface Address {
+  logradouro: string,
+  cep: string,
+  complemento: string,
+  bairro: string,
+}
+
 export const Main = () => {
   const [Uf, setUf] = useState<string>('');
   const [city, setCity] = useState<string>('');
   const [street, setStreet] = useState<string>('');
-  const [results, setResults] = useState<Array<object>>([]);
+  const [results, setResults] = useState<Address[]>([]);
   const [error, setError] = useState<string>('')
 
   const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
@@ -21,21 +28,20 @@ export const Main = () => {
     if(isValid) {
       const data = await fetch(endpoint).then(response => response.json());
       setResults(data);
-      console.log(results);
     } else {
       setError('A busca deve conter ao menos 3 letras');
     };
   };
 
-  console.log(street)
+  console.log(results)
   return (
-    <div className='flex flex-col mt-20 p-4 items-center justify-center border rounded-2xl shadow-xl'>
-      <div>
+    <div className='flex flex-col mt-20 items-center justify-center '>
+      <div className='mb-2'>
         <p className='text-sm'>
           Preencha seus dados
         </p>
       </div>
-      <form className='flex flex-col items-center' onSubmit={handleSubmit}>
+      <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
         <input
           className='focus:outline-none mb-2 focus:border-b focus:border-blue-200'        
           type="text"
@@ -64,13 +70,35 @@ export const Main = () => {
           ACHE MEU CEP!
         </button>
       </form>
-      {error && (
+      {error !== '' && (
         <div>
           <p className='text-xs mt-2 text-red-600'>
             {error}
           </p>
         </div>
       )}
+      {results.length > 0 && (
+        <div className='flex flex-col items-center p-4 border rounded-2xl shadow-xl'>
+          {results.map(result => {
+            return (
+              <div key={result.cep}>
+                <p>
+                  {result.logradouro}
+                </p>
+                <p>
+                  {result.cep}
+                </p>
+                <p>
+                  {result.complemento}
+                </p>
+                <p>
+                  {result.bairro}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      )}      
     </div>
   );
 };
