@@ -34,58 +34,115 @@ export const Main = () => {
   };
 
   return (
-    <div className='flex flex-col mt-10 items-center justify-center '>
-      <div className='mb-2'>
-        <p className='text-sm'>
-          Preencha seus dados
-        </p>
+    <div className='flex flex-col'>   
+      <div className='flex flex-col mt-10 items-center justify-center '>
+        <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
+          <input
+            className='focus:outline-none mb-2 focus:border-b focus:border-blue-200'        
+            type="text"
+            placeholder='UF'
+            value={Uf}
+            onChange={(e) => setUf(e.target.value)}
+          />
+          <input
+            className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+            type="text"
+            placeholder='Cidade'
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <input
+            className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+            type="text"
+            placeholder='Logradouro (rua, avenida, etc)'
+            value={street}
+            onChange={(e) => setStreet(e.target.value)}
+          />
+          <button 
+            className='p-2 mt-4 rounded-3xl text-sm text-white bg-blue-400 hover:bg-blue-500 duration-300' 
+            type='submit'
+          >
+            ACHE MEU CEP!
+          </button>
+        </form>
+        {error !== '' && (
+          <div>
+            <p className='text-xs mt-2 text-red-600'>
+              {error}
+            </p>
+          </div>
+        )}       
       </div>
-      <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
-        <input
-          className='focus:outline-none mb-2 focus:border-b focus:border-blue-200'        
-          type="text"
-          placeholder='UF'
-          value={Uf}
-          onChange={(e) => setUf(e.target.value)}
-        />
-        <input
-          className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
-          type="text"
-          placeholder='Cidade'
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
-        <input
-          className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
-          type="text"
-          placeholder='Logradouro (rua, avenida, etc)'
-          value={street}
-          onChange={(e) => setStreet(e.target.value)}
-        />
-        <button 
-          className='p-2 mt-4 rounded-3xl text-sm text-white bg-blue-400 hover:bg-blue-500 duration-300' 
-          type='submit'
-        >
-          ACHE MEU CEP!
-        </button>
-      </form>
-      {error !== '' && (
-        <div>
-          <p className='text-xs mt-2 text-red-600'>
-            {error}
-          </p>
+      <div className='flex flex-col mt-8 items-center justify-around'>              
+        <p className='text-xs mb-2'>
+          MEUS CEPS
+        </p>
+        <div 
+          className='flex items-center 
+          border bg-blue-100 w-full p-1 overflow-y-hidden'>
+          <div 
+            className="flex flex-col gap-1 h-32 w-44   
+            items-start p-2 m-2 bg-slate-100 
+            duration-300 border rounded-2xl shadow-xl"
+            >
+              <p className='truncate'>
+                Rua Exemplo
+              </p>
+              <p className='text-blue-500'>
+                28000-000
+              </p>
+              <p className='text-xs'>
+                Ao lado de Nada
+              </p>
+              <p className='text-xs'>
+                Canão
+              </p>
+          </div>
+          <div 
+            className="flex flex-col gap-1 h-32 w-44   
+            items-start p-2 m-2 bg-slate-100 
+            duration-300 border rounded-2xl shadow-xl"
+            >
+              <p className='truncate'>
+                Rua Exemplo
+              </p>
+              <p className='text-blue-500'>
+                28000-000
+              </p>
+              <p className='text-xs'>
+                Ao lado de Nada
+              </p>
+              <p className='text-xs'>
+                Canão
+              </p>
+          </div>
+          <div 
+            className="flex flex-col gap-1 h-32 w-44   
+            items-start p-2 m-2 bg-slate-100 
+            duration-300 border rounded-2xl shadow-xl"
+            >
+              <p className='truncate'>
+                Rua Exemplo
+              </p>
+              <p className='text-blue-500'>
+                28000-000
+              </p>
+              <p className='text-xs'>
+                Ao lado de Nada
+              </p>
+              <p className='text-xs'>
+                Canão
+              </p>
+          </div>          
         </div>
-      )}
-      {results.length > 0 && (
-        <div className='flex flex-col items-center my-8 p-1 '>
+        <div className='flex flex-col w-2/4 my-2 p-1'>
           {results.map(result => {
             return (
               <div 
                 key={result.cep}
-                className="flex flex-col gap-1 h-32 w-56 
-                 items-start p-2 m-2 hover:bg-slate-100 
-                 duration-300 border rounded-2xl shadow-xl"
-                >
+                className="flex flex-col gap-1 h-32 w-44 
+                items-start p-2 m-2 hover:bg-slate-100 
+                duration-300 border rounded-2xl shadow-xl">
                 <p>
                   {result.logradouro}
                 </p>
@@ -101,8 +158,8 @@ export const Main = () => {
               </div>
             )
           })}
-        </div>
-      )}      
+        </div>      
+      </div>
     </div>
   );
 };
