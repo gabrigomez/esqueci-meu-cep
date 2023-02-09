@@ -33,9 +33,8 @@ export const Main = () => {
     };
   };
 
-  console.log(results)
   return (
-    <div className='flex flex-col mt-20 items-center justify-center '>
+    <div className='flex flex-col mt-10 items-center justify-center '>
       <div className='mb-2'>
         <p className='text-sm'>
           Preencha seus dados
@@ -78,20 +77,25 @@ export const Main = () => {
         </div>
       )}
       {results.length > 0 && (
-        <div className='flex flex-col items-center p-4 border rounded-2xl shadow-xl'>
+        <div className='flex flex-col items-center my-8 p-1 '>
           {results.map(result => {
             return (
-              <div key={result.cep}>
+              <div 
+                key={result.cep}
+                className="flex flex-col gap-1 h-32 w-56 
+                 items-start p-2 m-2 hover:bg-slate-100 
+                 duration-300 border rounded-2xl shadow-xl"
+                >
                 <p>
                   {result.logradouro}
                 </p>
-                <p>
+                <p className='text-blue-500'>
                   {result.cep}
                 </p>
-                <p>
+                <p className='text-xs'>
                   {result.complemento}
                 </p>
-                <p>
+                <p className='text-xs'>
                   {result.bairro}
                 </p>
               </div>
