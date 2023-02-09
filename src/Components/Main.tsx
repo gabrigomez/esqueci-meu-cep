@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
+import { BsSave2 } from 'react-icons/bs';
+
 
 interface Address {
   logradouro: string,
@@ -140,10 +142,10 @@ export const Main = () => {
             return (
               <div 
                 key={result.cep}
-                className="flex flex-col gap-1 h-32 w-44 
+                className="flex flex-col gap-1 h-32 w-52 
                 items-start p-2 m-2 hover:bg-slate-100 
                 duration-300 border rounded-2xl shadow-xl">
-                <p>
+                <p className='text-sm'>
                   {result.logradouro}
                 </p>
                 <p className='text-blue-500'>
@@ -152,9 +154,13 @@ export const Main = () => {
                 <p className='text-xs'>
                   {result.complemento}
                 </p>
-                <p className='text-xs'>
+                <p className='text-xs mb-1'>
                   {result.bairro}
                 </p>
+                <div className='flex cursor-pointer'>
+                  <BsSave2 className='text-blue-500 mr-1' />
+                  <p className='text-xs'>Salvar</p>
+                </div>
               </div>
             )
           })}
