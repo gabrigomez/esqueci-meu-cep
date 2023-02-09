@@ -15,7 +15,11 @@ export const Main = () => {
   const [city, setCity] = useState<string>('');
   const [street, setStreet] = useState<string>('');
   const [results, setResults] = useState<Address[]>([]);
-  const [error, setError] = useState<string>('')
+  const [error, setError] = useState<string>('');
+ 
+  const initialList: Address[] = JSON.parse(localStorage.getItem("ceps") || "") 
+  const [savedList] = useState<Address[]>([...initialList]);
+
 
   const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
 
@@ -34,6 +38,12 @@ export const Main = () => {
       setError('A busca deve conter ao menos 3 letras');
     };
   };
+
+  const saveCep = (item: Address) => {
+    savedList.push(item);
+    const convertedItem = JSON.stringify(savedList)
+    localStorage.setItem('ceps', convertedItem)
+  }
 
   return (
     <div className='flex flex-col'>   
@@ -79,63 +89,31 @@ export const Main = () => {
         <p className='text-xs mb-2'>
           MEUS CEPS
         </p>
-        <div 
-          className='flex items-center 
-          border bg-blue-100 w-full p-1 overflow-y-hidden'>
-          <div 
-            className="flex flex-col gap-1 h-32 w-44   
-            items-start p-2 m-2 bg-slate-100 
-            duration-300 border rounded-2xl shadow-xl"
-            >
-              <p className='truncate'>
-                Rua Exemplo
-              </p>
-              <p className='text-blue-500'>
-                28000-000
-              </p>
-              <p className='text-xs'>
-                Ao lado de Nada
-              </p>
-              <p className='text-xs'>
-                Canão
-              </p>
-          </div>
-          <div 
-            className="flex flex-col gap-1 h-32 w-44   
-            items-start p-2 m-2 bg-slate-100 
-            duration-300 border rounded-2xl shadow-xl"
-            >
-              <p className='truncate'>
-                Rua Exemplo
-              </p>
-              <p className='text-blue-500'>
-                28000-000
-              </p>
-              <p className='text-xs'>
-                Ao lado de Nada
-              </p>
-              <p className='text-xs'>
-                Canão
-              </p>
-          </div>
-          <div 
-            className="flex flex-col gap-1 h-32 w-44   
-            items-start p-2 m-2 bg-slate-100 
-            duration-300 border rounded-2xl shadow-xl"
-            >
-              <p className='truncate'>
-                Rua Exemplo
-              </p>
-              <p className='text-blue-500'>
-                28000-000
-              </p>
-              <p className='text-xs'>
-                Ao lado de Nada
-              </p>
-              <p className='text-xs'>
-                Canão
-              </p>
-          </div>          
+        {initialList && (
+          initialList.map(item => {
+            return (
+              <div
+                key={item.cep} 
+                className="flex flex-col gap-1 h-32 w-44   
+                items-start p-2 m-2 bg-slate-100 
+                duration-300 border rounded-2xl shadow-xl"
+                >
+                  <p className='truncate'>
+                    {item.logradouro}
+                  </p>
+                  <p className='text-blue-500'>
+                    {item.cep}
+                  </p>
+                  <p className='text-xs'>
+                    {item.complemento}
+                  </p>
+                  <p className='text-xs'>
+                    {item.bairro}
+                  </p>
+              </div>
+            )
+          })
+        )}             
         </div>
         <div className='flex flex-col w-2/4 my-2 p-1'>
           {results.map(result => {
@@ -157,15 +135,14 @@ export const Main = () => {
                 <p className='text-xs mb-1'>
                   {result.bairro}
                 </p>
-                <div className='flex cursor-pointer'>
+                <button className='flex cursor-pointer' onClick={() => saveCep(result)}>
                   <BsSave2 className='text-blue-500 mr-1' />
                   <p className='text-xs'>Salvar</p>
-                </div>
+                </button>
               </div>
             )
           })}
         </div>      
       </div>
-    </div>
   );
 };
