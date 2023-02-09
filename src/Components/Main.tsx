@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 import { BsSave2 } from 'react-icons/bs';
-
+import { MdDeleteForever } from 'react-icons/md';
 
 interface Address {
   logradouro: string,
@@ -19,7 +19,6 @@ export const Main = () => {
  
   const initialList: Address[] = JSON.parse(localStorage.getItem("ceps") || "") 
   const [savedList] = useState<Address[]>([...initialList]);
-
 
   const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
 
@@ -41,9 +40,21 @@ export const Main = () => {
 
   const saveCep = (item: Address) => {
     savedList.push(item);
-    const convertedItem = JSON.stringify(savedList)
-    localStorage.setItem('ceps', convertedItem)
+    const convertedItem = JSON.stringify(savedList);
+    localStorage.setItem('ceps', convertedItem);
   }
+
+  const removeItem = (item: Address) => {
+    for(let i = 0; i < savedList.length; i++) {
+      if (savedList[i].cep === item.cep) {
+        savedList.splice(i, 1);
+        const convertedItem = JSON.stringify(savedList);
+        localStorage.setItem('ceps', convertedItem);
+      };
+    };
+  }
+
+  console.log(savedList)
 
   return (
     <div className='flex flex-col'>   
@@ -110,6 +121,10 @@ export const Main = () => {
                   <p className='text-xs'>
                     {item.bairro}
                   </p>
+                  <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
+                    <MdDeleteForever className='text-blue-500 mr-1' />
+                    <p className='text-xs'>Deletar</p>
+                  </button>
               </div>
             )
           })
