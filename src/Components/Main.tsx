@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 import { BsSave2 } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
@@ -23,8 +23,8 @@ export const Main = () => {
   const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
 
   setTimeout(() => {
-    setError('')
-  }, 3000)
+    setError('');
+  }, 3000);
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -53,8 +53,6 @@ export const Main = () => {
       };
     };
   }
-
-  console.log(savedList)
 
   return (
     <div className='flex flex-col'>   
@@ -123,7 +121,9 @@ export const Main = () => {
                   </p>
                   <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
                     <MdDeleteForever className='text-blue-500 mr-1' />
-                    <p className='text-xs'>Deletar</p>
+                    <p className='text-xs hover:text-red-500 duration-300'>
+                      Deletar
+                    </p>
                   </button>
               </div>
             )
@@ -150,9 +150,11 @@ export const Main = () => {
                 <p className='text-xs mb-1'>
                   {result.bairro}
                 </p>
-                <button className='flex cursor-pointer' onClick={() => saveCep(result)}>
+                <button className='flex cursor-pointer ' onClick={() => saveCep(result)}>
                   <BsSave2 className='text-blue-500 mr-1' />
-                  <p className='text-xs'>Salvar</p>
+                  <p className='text-xs hover:text-blue-500 duration-300'>
+                    Salvar
+                  </p>
                 </button>
               </div>
             )
