@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         'shadows': ['Shadows Into Light', 'cursive'],
+        'raleway': ['Raleway', 'sans-serif'],
       },
       screens: {
         'xs': '510px',

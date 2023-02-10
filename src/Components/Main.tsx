@@ -76,7 +76,7 @@ export const Main = () => {
   };
 
   return (
-    <div className='flex flex-col'>      
+    <div className='flex flex-col font-raleway'>      
       <div className='flex flex-col mt-5 items-center justify-center'>
         <p className='text-xs mb-1 font-bold'>
           MEUS CEPS
