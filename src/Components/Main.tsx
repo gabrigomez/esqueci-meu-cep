@@ -42,7 +42,7 @@ export const Main = () => {
     const newList = [...savedList];    
     newList.push(item);
     setSavedList(newList);
-    
+
     const convertedItem = JSON.stringify(newList);
     localStorage.setItem('ceps', convertedItem);
   };
@@ -66,7 +66,7 @@ export const Main = () => {
         <p className='text-xs mb-2'>
           MEUS CEPS
         </p>
-        <div className='flex overflow-x-auto'>
+        <div className='flex max-w-[340px] xs:max-w-[500px] overflow-x-auto'>
           {savedList.length > 0 && (
             savedList.map(item => {
               return (
