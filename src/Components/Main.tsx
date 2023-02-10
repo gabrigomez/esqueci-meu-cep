@@ -66,15 +66,15 @@ export const Main = () => {
         <p className='text-xs mb-2'>
           MEUS CEPS
         </p>
-        <div className='flex max-w-[340px] xs:max-w-[500px] overflow-x-auto'>
+        <div className='flex max-w-[340px] xs:max-w-[500px] md:max-w-[700px] xl:max-w-[1000px] overflow-x-auto'>
           {savedList.length > 0 && (
             savedList.map(item => {
               return (
                 <div
                   key={item.cep} 
                   className="flex flex-col gap-1 h-32 w-44   
-                  items-start p-2 m-2 bg-slate-100 
-                  duration-300 border rounded-2xl shadow-xl"
+                  items-start p-2 m-2 bg-slate-300 
+                  duration-300 border rounded-2xl shadow-md"
                   >
                     <p className='truncate'>
                       {item.logradouro}
