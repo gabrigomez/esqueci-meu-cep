@@ -24,7 +24,7 @@ export const Main = () => {
 
   setTimeout(() => {
     setError('');
-  }, 3000);
+  }, 4000);
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -39,12 +39,26 @@ export const Main = () => {
   };
 
   const saveCep = (item: Address) => {
-    const newList = [...savedList];    
-    newList.push(item);
-    setSavedList(newList);
-
-    const convertedItem = JSON.stringify(newList);
-    localStorage.setItem('ceps', convertedItem);
+    const newList = [...savedList];
+    if (savedList.length > 0) {
+      for(let i = 0; i < newList.length; i++) {
+        if (newList[i].cep !== item.cep) {
+          console.log('caiu aqui')
+          newList.push(item);
+          setSavedList(newList);
+  
+          const convertedItem = JSON.stringify(newList);
+          localStorage.setItem('ceps', convertedItem);
+        } else {
+          setError('Endereço e CEP já salvos!')
+        };
+      };
+    } else {
+      newList.push(item);
+      setSavedList(newList);  
+      const convertedItem = JSON.stringify(newList);
+      localStorage.setItem('ceps', convertedItem);
+    }
   };
 
   const removeItem = (item: Address) => {
