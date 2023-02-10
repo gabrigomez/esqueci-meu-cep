@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 import { BsSave2 } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
-
 interface Address {
   logradouro: string,
   cep: string,
@@ -37,24 +36,25 @@ export const Main = () => {
       setError('A busca deve conter ao menos 3 letras');
     };
   };
-
-  const saveCep = (item: Address) => {
-    const newList = [...savedList];
-    if (savedList.length > 0) {
-      for(let i = 0; i < newList.length; i++) {
-        if (newList[i].cep !== item.cep) {
-          console.log('caiu aqui')
-          newList.push(item);
-          setSavedList(newList);
   
-          const convertedItem = JSON.stringify(newList);
-          localStorage.setItem('ceps', convertedItem);
-        } else {
-          setError('Endereço e CEP já salvos!')
-        };
-      };
+  const saveCep = (item: Address) => {
+    const isDuplicate = !!savedList.find(add => add.cep === item.cep);    
+      
+    if (savedList.length > 0) {     
+      if (isDuplicate) {
+        setError('Endereço e CEP já salvos!');
+      } else {
+        const newList = [...savedList];
+        newList.push(item);
+        setSavedList(newList);
+        
+        const convertedItem = JSON.stringify(newList);
+        localStorage.setItem('ceps', convertedItem);
+      };      
     } else {
+      const newList = [...savedList];
       newList.push(item);
+      
       setSavedList(newList);  
       const convertedItem = JSON.stringify(newList);
       localStorage.setItem('ceps', convertedItem);
@@ -76,8 +76,8 @@ export const Main = () => {
 
   return (
     <div className='flex flex-col'>      
-      <div className='flex flex-col mt-8 items-center justify-around'>
-        <p className='text-xs mb-2'>
+      <div className='flex flex-col mt-5 items-center justify-center'>
+        <p className='text-xs mb-1 font-bold'>
           MEUS CEPS
         </p>
         <div className='flex max-w-[340px] xs:max-w-[500px] md:max-w-[700px] xl:max-w-[1000px] overflow-x-auto'>
@@ -113,7 +113,7 @@ export const Main = () => {
             })
           )}        
         </div>
-        <div className='flex flex-col mt-10 items-center justify-center '>
+        <div className='flex flex-col mt-5 items-center justify-center '>
           <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
             <input
               className='focus:outline-none mb-2 focus:border-b focus:border-blue-200'        
@@ -151,7 +151,7 @@ export const Main = () => {
             </div>
           )}       
         </div>
-        <div className='flex flex-col w-2/4 my-2 p-1'>
+        <div className='flex flex-col my-2 p-1'>
           {results.map(result => {
             return (
               <div 
