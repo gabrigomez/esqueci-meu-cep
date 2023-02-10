@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 import { BsSave2 } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
@@ -8,7 +8,7 @@ interface Address {
   cep: string,
   complemento: string,
   bairro: string,
-}
+};
 
 export const Main = () => {
   const [Uf, setUf] = useState<string>('');
@@ -17,8 +17,8 @@ export const Main = () => {
   const [results, setResults] = useState<Address[]>([]);
   const [error, setError] = useState<string>('');
  
-  const initialList: Address[] = JSON.parse(localStorage.getItem("ceps") || '{"":""}') 
-  const [savedList] = useState<Address[]>(initialList.length > 0 ? [...initialList]: []);
+  const initialList: Address[] = JSON.parse(localStorage.getItem("ceps") || '{"":""}'); 
+  const [savedList, setSavedList] = useState<Address[]>(initialList.length > 0 ? [...initialList] : []);  
 
   const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
 
@@ -39,25 +39,26 @@ export const Main = () => {
   };
 
   const saveCep = (item: Address) => {
-    savedList.push(item);
-    const convertedItem = JSON.stringify(savedList);
+    const newList = [...savedList];    
+    newList.push(item);
+    setSavedList(newList);
+    
+    const convertedItem = JSON.stringify(newList);
     localStorage.setItem('ceps', convertedItem);
-    console.log(savedList)
   };
 
   const removeItem = (item: Address) => {
-    for(let i = 0; i < savedList.length; i++) {
-      if (savedList[i].cep === item.cep) {
-        savedList.splice(i, 1);
-        const convertedItem = JSON.stringify(savedList);
+    const newList = [...savedList];
+    for(let i = 0; i < newList.length; i++) {
+      if (newList[i].cep === item.cep) {
+        newList.splice(i, 1);
+        setSavedList(newList);
+
+        const convertedItem = JSON.stringify(newList);
         localStorage.setItem('ceps', convertedItem);
       };
     };
   };
-
-  useEffect(() => {
-    
-  }, [savedList])
 
   return (
     <div className='flex flex-col'>      
