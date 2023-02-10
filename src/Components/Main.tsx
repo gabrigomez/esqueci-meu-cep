@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 import { BsSave2 } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
+import { states } from './states';
 interface Address {
   logradouro: string,
   cep: string,
@@ -112,13 +113,20 @@ export const Main = () => {
         </div>
         <div className='flex flex-col mt-5 items-center justify-center '>
           <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
-            <input
-              className='focus:outline-none mb-2 focus:border-b focus:border-blue-200'        
-              type="text"
+            <select
+              className=' self-start mb-2 bg-blue-100 rounded-lg p-1'        
               placeholder='UF'
               value={Uf}
               onChange={(e) => setUf(e.target.value)}
-            />
+            >
+              {states.map(state => {
+                return (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                )
+              })}            
+            </select>
             <input
               className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
