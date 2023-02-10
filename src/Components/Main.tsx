@@ -42,7 +42,7 @@ export const Main = () => {
     savedList.push(item);
     const convertedItem = JSON.stringify(savedList);
     localStorage.setItem('ceps', convertedItem);
-  }
+  };
 
   const removeItem = (item: Address) => {
     for(let i = 0; i < savedList.length; i++) {
@@ -52,45 +52,51 @@ export const Main = () => {
         localStorage.setItem('ceps', convertedItem);
       };
     };
-  }
+  };
+
+  useEffect(() => {
+    
+  }, [initialList])
 
   return (
     <div className='flex flex-col'>      
-      <div className='flex flex-col mt-8 items-center justify-around'>              
-        <p className='text-xs mb-2'>
-          MEUS CEPS
-        </p>
-        {initialList && (
-          initialList.map(item => {
-            return (
-              <div
-                key={item.cep} 
-                className="flex flex-col gap-1 h-32 w-44   
-                items-start p-2 m-2 bg-slate-100 
-                duration-300 border rounded-2xl shadow-xl"
-                >
-                  <p className='truncate'>
-                    {item.logradouro}
-                  </p>
-                  <p className='text-blue-500'>
-                    {item.cep}
-                  </p>
-                  <p className='text-xs'>
-                    {item.complemento}
-                  </p>
-                  <p className='text-xs'>
-                    {item.bairro}
-                  </p>
-                  <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
-                    <MdDeleteForever className='text-blue-500 mr-1' />
-                    <p className='text-xs hover:text-red-500 duration-300'>
-                      Deletar
-                    </p>
-                  </button>
-              </div>
-            )
-          })
-        )}             
+      <div className='flex flex-col mt-8 items-center justify-around'>
+          <p className='text-xs mb-2'>
+            MEUS CEPS
+          </p>
+          <div className='flex overflow-x-auto'>
+            {initialList && (
+              initialList.map(item => {
+                return (
+                  <div
+                    key={item.cep} 
+                    className="flex flex-col gap-1 h-32 w-44   
+                    items-start p-2 m-2 bg-slate-100 
+                    duration-300 border rounded-2xl shadow-xl"
+                    >
+                      <p className='truncate'>
+                        {item.logradouro}
+                      </p>
+                      <p className='text-blue-500'>
+                        {item.cep}
+                      </p>
+                      <p className='text-xs'>
+                        {item.complemento}
+                      </p>
+                      <p className='text-xs'>
+                        {item.bairro}
+                      </p>
+                      <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
+                        <MdDeleteForever className='text-blue-500 mr-1' />
+                        <p className='text-xs hover:text-red-500 duration-300'>
+                          Deletar
+                        </p>
+                      </button>
+                  </div>        
+                )
+              })
+              )}        
+          </div>
         <div className='flex flex-col mt-10 items-center justify-center '>
           <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
             <input
