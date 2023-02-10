@@ -86,27 +86,24 @@ export const Main = () => {
               return (
                 <div
                   key={item.cep} 
-                  className="flex flex-col gap-1 h-32 w-44   
-                  items-start p-2 m-2 bg-slate-300 
+                  className="flex flex-col gap-1 max-h-40 w-44   
+                  items-start p-2 m-2 bg-slate-300    
                   duration-300 border rounded-2xl shadow-md"
                   >
-                    <p className='truncate'>
+                    <p className='w-40 truncate'>
                       {item.logradouro}
                     </p>
-                    <p className='text-blue-500'>
+                    <p className='text-blue-500 font-bold'>
                       {item.cep}
                     </p>
-                    <p className='text-xs'>
+                    <p className='text-xs truncate h-4'>
                       {item.complemento}
                     </p>
-                    <p className='text-xs'>
+                    <p className='text-xs font-semibold'>
                       {item.bairro}
                     </p>
-                    <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
-                      <MdDeleteForever className='text-blue-500 mr-1' />
-                      <p className='text-xs hover:text-red-500 duration-300'>
-                        Deletar
-                      </p>
+                    <button className='flex self-end cursor-pointer' onClick={() => removeItem(item)}>
+                      <MdDeleteForever className='text-blue-500 text-xl hover:text-red-500 duration-300' />
                     </button>
                 </div>        
               )
@@ -156,7 +153,7 @@ export const Main = () => {
             return (
               <div 
                 key={result.cep}
-                className="flex flex-col gap-1 h-32 w-52 
+                className="flex flex-col gap-1 max-h-40 w-52 
                 items-start p-2 m-2 hover:bg-slate-100 
                 duration-300 border rounded-2xl shadow-xl">
                 <p className='text-sm'>
@@ -171,7 +168,7 @@ export const Main = () => {
                 <p className='text-xs mb-1'>
                   {result.bairro}
                 </p>
-                <button className='flex cursor-pointer ' onClick={() => saveCep(result)}>
+                <button className='flex cursor-pointer' onClick={() => saveCep(result)}>
                   <BsSave2 className='text-blue-500 mr-1' />
                   <p className='text-xs hover:text-blue-500 duration-300'>
                     Salvar
