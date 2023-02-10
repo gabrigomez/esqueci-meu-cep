@@ -17,8 +17,8 @@ export const Main = () => {
   const [results, setResults] = useState<Address[]>([]);
   const [error, setError] = useState<string>('');
  
-  const initialList: Address[] = JSON.parse(localStorage.getItem("ceps") || "") 
-  const [savedList] = useState<Address[]>([...initialList]);
+  const initialList: Address[] = JSON.parse(localStorage.getItem("ceps") || '{"":""}') 
+  const [savedList] = useState<Address[]>(initialList.length > 0 ? [...initialList]: []);
 
   const endpoint = `https://viacep.com.br/ws/${Uf}/${city}/${street}/json/`;
 
@@ -42,6 +42,7 @@ export const Main = () => {
     savedList.push(item);
     const convertedItem = JSON.stringify(savedList);
     localStorage.setItem('ceps', convertedItem);
+    console.log(savedList)
   };
 
   const removeItem = (item: Address) => {
@@ -56,47 +57,47 @@ export const Main = () => {
 
   useEffect(() => {
     
-  }, [initialList])
+  }, [savedList])
 
   return (
     <div className='flex flex-col'>      
       <div className='flex flex-col mt-8 items-center justify-around'>
-          <p className='text-xs mb-2'>
-            MEUS CEPS
-          </p>
-          <div className='flex overflow-x-auto'>
-            {initialList && (
-              initialList.map(item => {
-                return (
-                  <div
-                    key={item.cep} 
-                    className="flex flex-col gap-1 h-32 w-44   
-                    items-start p-2 m-2 bg-slate-100 
-                    duration-300 border rounded-2xl shadow-xl"
-                    >
-                      <p className='truncate'>
-                        {item.logradouro}
+        <p className='text-xs mb-2'>
+          MEUS CEPS
+        </p>
+        <div className='flex overflow-x-auto'>
+          {savedList.length > 0 && (
+            savedList.map(item => {
+              return (
+                <div
+                  key={item.cep} 
+                  className="flex flex-col gap-1 h-32 w-44   
+                  items-start p-2 m-2 bg-slate-100 
+                  duration-300 border rounded-2xl shadow-xl"
+                  >
+                    <p className='truncate'>
+                      {item.logradouro}
+                    </p>
+                    <p className='text-blue-500'>
+                      {item.cep}
+                    </p>
+                    <p className='text-xs'>
+                      {item.complemento}
+                    </p>
+                    <p className='text-xs'>
+                      {item.bairro}
+                    </p>
+                    <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
+                      <MdDeleteForever className='text-blue-500 mr-1' />
+                      <p className='text-xs hover:text-red-500 duration-300'>
+                        Deletar
                       </p>
-                      <p className='text-blue-500'>
-                        {item.cep}
-                      </p>
-                      <p className='text-xs'>
-                        {item.complemento}
-                      </p>
-                      <p className='text-xs'>
-                        {item.bairro}
-                      </p>
-                      <button className='flex cursor-pointer' onClick={() => removeItem(item)}>
-                        <MdDeleteForever className='text-blue-500 mr-1' />
-                        <p className='text-xs hover:text-red-500 duration-300'>
-                          Deletar
-                        </p>
-                      </button>
-                  </div>        
-                )
-              })
-              )}        
-          </div>
+                    </button>
+                </div>        
+              )
+            })
+          )}        
+        </div>
         <div className='flex flex-col mt-10 items-center justify-center '>
           <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
             <input
