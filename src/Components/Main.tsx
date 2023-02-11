@@ -32,7 +32,13 @@ export const Main = () => {
 
     if(isValid) {
       const data = await fetch(endpoint).then(response => response.json());
-      setResults(data);
+      if(data.length > 0) {
+        setResults(data);
+      }
+      else {
+        setResults([]);
+        setError("A busca não obteve resultados para este endereço");
+      }
     } else {
       setError('A busca deve conter ao menos 3 letras em cada campo');
     };
