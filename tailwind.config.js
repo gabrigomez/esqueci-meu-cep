@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'shadows': ['Shadows Into Light', 'cursive'],
+        'julee': ['Julee', 'cursive'],
         'raleway': ['Raleway', 'sans-serif'],
       },
       screens: {
