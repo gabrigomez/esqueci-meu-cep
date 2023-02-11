@@ -111,10 +111,10 @@ export const Main = () => {
             })
           )}        
         </div>
-        <div className='flex flex-col mt-5 items-center justify-center '>
-          <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
+        <div className='flex flex-col w-full mt-5 items-center justify-center '>
+          <form className='flex flex-col w-3/4 sm:w-2/4 xl:w-1/4 items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
             <select
-              className='self-start mb-2 bg-blue-100 rounded-lg p-1'        
+              className='mb-2 bg-blue-100 rounded-lg p-1'        
               placeholder='UF'
               value={Uf}
               onChange={(e) => setUf(e.target.value)}
@@ -128,14 +128,14 @@ export const Main = () => {
               })}            
             </select>
             <input
-              className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+              className='w-full focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
               placeholder='Cidade'
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
             <input
-              className='focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+              className='w-full focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
               placeholder='Logradouro (rua, avenida, etc)'
               value={street}
