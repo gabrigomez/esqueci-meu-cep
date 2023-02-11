@@ -24,7 +24,7 @@ export const Main = () => {
 
   setTimeout(() => {
     setError('');
-  }, 4000);
+  }, 6000);
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -34,7 +34,7 @@ export const Main = () => {
       const data = await fetch(endpoint).then(response => response.json());
       setResults(data);
     } else {
-      setError('A busca deve conter ao menos 3 letras');
+      setError('A busca deve conter ao menos 3 letras em cada campo');
     };
   };
   
