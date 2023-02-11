@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { searchSchema } from '../Validations/searchValidation';
 import { BsSave2 } from 'react-icons/bs';
 import { MdDeleteForever } from 'react-icons/md';
-import { states } from './states';
+import { states } from '../utils/states';
 interface Address {
   logradouro: string,
   cep: string,
