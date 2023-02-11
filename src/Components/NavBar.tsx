@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { RiEmotionSadLine } from 'react-icons/ri';
 
-
 export const NavBar = () => {
   return (
     <nav className='flex items-center justify-center w-full h-16 border border-b-slate-200'>

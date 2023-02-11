@@ -114,7 +114,7 @@ export const Main = () => {
         <div className='flex flex-col mt-5 items-center justify-center '>
           <form className='flex flex-col items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
             <select
-              className=' self-start mb-2 bg-blue-100 rounded-lg p-1'        
+              className='self-start mb-2 bg-blue-100 rounded-lg p-1'        
               placeholder='UF'
               value={Uf}
               onChange={(e) => setUf(e.target.value)}
