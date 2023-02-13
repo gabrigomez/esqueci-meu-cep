@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { RiEmotionSadLine } from 'react-icons/ri';
+import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
   return (
@@ -10,6 +11,9 @@ export const NavBar = () => {
           ESQUECI MEU CEP!
         </p>
       </div>
+      <Link to='/sobre' className="">
+        Sobre
+      </Link>
     </nav>
   )
 }
