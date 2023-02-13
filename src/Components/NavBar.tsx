@@ -15,12 +15,12 @@ export const NavBar = () => {
           </p>
         </div>
       </Link>
-      <div className='flex justify-self-center'>
+      <Link to='/' className='flex justify-self-center'>
         <RiEmotionSadLine className='text-5xl'/>
         <p className='font-julee font-semibold text-md'>
           ESQUECI MEU CEP!
         </p>
-      </div>
+      </Link>
     </nav>
   )
 }
