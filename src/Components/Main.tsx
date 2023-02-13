@@ -143,7 +143,7 @@ export const Main = () => {
             <input
               className='w-full focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
-              placeholder='Logradouro (rua, avenida, etc)'
+              placeholder='Logradouro completo (rua, avenida, etc)'
               value={street}
               onChange={(e) => setStreet(e.target.value)}
             />
