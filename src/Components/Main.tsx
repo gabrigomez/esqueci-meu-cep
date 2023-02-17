@@ -84,7 +84,7 @@ export const Main = () => {
   return (
     <div className='flex flex-col font-raleway'>      
       <div className='flex flex-col mt-5 items-center justify-center'>
-        <p className='text-xs mb-1 font-bold'>
+        <p className='text-xs mb-1 font-bold dark:text-white'>
           MEUS CEPS
         </p>
         <div className='flex max-w-[340px] xs:max-w-[500px] md:max-w-[700px] xl:max-w-[1000px] overflow-x-auto'>
