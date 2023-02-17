@@ -134,14 +134,14 @@ export const Main = () => {
               })}            
             </select>
             <input
-              className='w-full dark:bg-black  focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+              className='w-full dark:bg-black dark:text-white focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
               placeholder='Cidade'
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
             <input
-              className='w-full dark:bg-black focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+              className='w-full dark:bg-black dark:text-white focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
               placeholder='Logradouro completo (rua, avenida, etc)'
               value={street}
@@ -168,23 +168,23 @@ export const Main = () => {
               <div 
                 key={result.cep}
                 className="flex flex-col gap-1 max-h-40 w-52 
-                items-start p-2 m-2 hover:bg-slate-100 
+                items-start p-2 m-2 hover:bg-slate-100 dark:hover:bg-slate-800 
                 duration-300 border rounded-2xl shadow-xl">
-                <p className='text-sm'>
+                <p className='text-sm dark:text-white'>
                   {result.logradouro}
                 </p>
                 <p className='text-blue-500'>
                   {result.cep}
                 </p>
-                <p className='text-xs'>
+                <p className='text-xs dark:text-white'>
                   {result.complemento}
                 </p>
-                <p className='text-xs mb-1'>
+                <p className='text-xs mb-1 dark:text-white'>
                   {result.bairro}
                 </p>
                 <button className='flex cursor-pointer' onClick={() => saveCep(result)}>
                   <BsSave2 className='text-blue-500 mr-1' />
-                  <p className='text-xs hover:text-blue-500 duration-300'>
+                  <p className='text-xs hover:text-blue-500 duration-300 dark:text-white'>
                     Salvar
                   </p>
                 </button>
