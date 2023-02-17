@@ -134,14 +134,14 @@ export const Main = () => {
               })}            
             </select>
             <input
-              className='w-full focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+              className='w-full dark:bg-black  focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
               placeholder='Cidade'
               value={city}
               onChange={(e) => setCity(e.target.value)}
             />
             <input
-              className='w-full focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
+              className='w-full dark:bg-black focus:outline-none mb-2 focus:border-b focus:border-blue-200' 
               type="text"
               placeholder='Logradouro completo (rua, avenida, etc)'
               value={street}

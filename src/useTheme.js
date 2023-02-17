@@ -10,6 +10,7 @@ export default function ThemeContextProvider({children}) {
 
     if (theme) {
       root.classList.add('dark');
+      console.log(theme)
     } else {
       root.classList.remove('dark');
     }
