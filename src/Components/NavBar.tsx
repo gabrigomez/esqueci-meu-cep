@@ -11,7 +11,7 @@ export const NavBar = () => {
   console.log(theme)
 
   return (
-    <nav className='flex justify-center items-center w-full h-16 border-b border-b-slate-200 dark:border-b-slate-800'>
+    <nav className='flex justify-center items-center w-full h-16 py-2 border-b border-b-slate-200 dark:border-b-slate-800'>
       <Link to='/about' className="absolute top-4 left-5 dark:text-white font-raleway">
         <div className='flex items-center hover:opacity-80 duration-300'>
           <BsInfoCircleFill className='mr-1 dark:text-white' />
