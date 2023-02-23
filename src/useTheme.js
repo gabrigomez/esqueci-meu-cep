@@ -3,16 +3,18 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const ThemeContext = createContext();
 
 export default function ThemeContextProvider({children}) {
-  const [theme, setTheme] = useState(false);
+  const [theme, setTheme] = useState(localStorage.getItem('cepTheme' || null));
 
   useEffect(()=> {
     const root = window.document.documentElement;
 
     if (theme) {
       root.classList.add('dark');
-      console.log(theme)
+      localStorage.setItem('cepTheme', 'dark');
+
     } else {
       root.classList.remove('dark');
+      localStorage.removeItem('cepTheme');
     }
   }, [theme]);
 
