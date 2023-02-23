@@ -82,7 +82,7 @@ export const Main = () => {
   };
 
   return (
-    <div className='flex flex-col font-raleway'>      
+    <div className='flex flex-col font-raleway dark:bg-black'>      
       <div className='flex flex-col mt-5 items-center justify-center'>
         <p className='text-xs mb-1 font-bold dark:text-white'>
           MEUS CEPS
@@ -117,7 +117,7 @@ export const Main = () => {
             })
           )}        
         </div>
-        <div className='flex flex-col w-full mt-5 items-center justify-center '>
+        <div className='flex flex-col w-full mt-5 items-center justify-center'>
           <form className='flex flex-col w-3/4 sm:w-2/4 xl:w-1/4 items-center border rounded-2xl shadow-xl p-4' onSubmit={handleSubmit}>
             <select
               className='mb-2 bg-blue-100 rounded-lg p-1'        
