@@ -8,7 +8,6 @@ import { useTheme } from '../useTheme.js';
 
 export const NavBar = () => {
   const { theme, setTheme } = useTheme();
-  console.log(theme)
 
   return (
     <nav className='flex justify-center items-center w-full h-16 py-2 border-b border-b-slate-200 dark:border-b-slate-800'>
