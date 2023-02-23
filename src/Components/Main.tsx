@@ -95,18 +95,18 @@ export const Main = () => {
                   key={item.cep} 
                   className="flex flex-col gap-1 max-h-40 w-44   
                   items-start p-2 m-2 bg-slate-300    
-                  duration-300 border rounded-2xl shadow-md"
+                  duration-300 border rounded-2xl shadow-md dark:bg-black"
                   >
-                    <p className='w-40 truncate'>
+                    <p className='w-40 truncate dark:text-white'>
                       {item.logradouro}
                     </p>
                     <p className='text-blue-500 font-bold'>
                       {item.cep}
                     </p>
-                    <p className='text-xs truncate h-4'>
+                    <p className='text-xs truncate h-4 dark:text-white'>
                       {item.complemento}
                     </p>
-                    <p className='text-xs font-semibold'>
+                    <p className='text-xs font-semibold dark:text-white'>
                       {item.bairro}
                     </p>
                     <button className='flex self-end cursor-pointer' onClick={() => removeItem(item)}>
